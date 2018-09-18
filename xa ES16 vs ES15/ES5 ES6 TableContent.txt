@@ -1,0 +1,21 @@
+New ES6 Features
+
+Manual 
+
+
+Variable declarations with lets and const
+Blocks and IIFEs
+Strings
+Arrow Functions
+Destructuring 
+Arrays
+The Spread Operator
+Rest and Default Parameters
+Maps
+Classes and subclasses
+How to use ES2015/ES6 today
+
+
+
+shows the compatibity of ES6
+Kangax.github.io/compat-table/es6/

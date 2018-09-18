@@ -1,0 +1,8 @@
+
+My skills include JavaScript, css and html.
+ I'm capable of making Object oriented , dynamics responsive website. 
+ I also, understand the fundamentals of nodejs, expressjs, react and redux.
+ Capable of testing application unit and/or integration test. 
+ I have completed a few self project and now I'm able understand and explain to other how i build my applications.
+ When i am working on my own project, I combine the new material with the old i learn to make different applications.
+ I have deploy some of my project, because i need more feedback.
