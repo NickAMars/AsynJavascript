@@ -6,14 +6,12 @@ let take;
     if(!Array.isArray(val)){
       // store value of non array
       store.push(val);
-      // console.log(val);
     }else{
-      // keep pushing the value in
+      // concatinate value with other function values
     store = store.concat(flatten(val));
     }
   }
-    // console.log(store);
   return store;
 }
 
-flatten([[[[1], [[[2]]], [[[[[[[3]]]]]]]]]]);
+console.log(flatten([1,2,3,4,[9,13,5], [4,3,6]]));
