@@ -26,7 +26,7 @@ function calcAge(year){
 	return 2018 - year;
 }
 console.log( `This is ${firstName} ${lastName}.
-				He was born in ${yearOfBirth}. 
+				He was born in ${yearOfBirth}.
 				Today he is ${calcAge(yearOfBirth)} years old. `);
 				// $()
 				//backtick ''
@@ -37,7 +37,7 @@ console.log( `This is ${firstName} ${lastName}.
 .repeat('');
 
 
-//ARROW function			
+//ARROW function
 const years = [1990, 1965, 1982, 1937];
 
 //e.g 1
@@ -53,7 +53,7 @@ const now = new Date().getFullYear(); // get the current year
 const age = now  - el ;
 return ` Age element ${index + 1} : ${age}` // he didnt use ;
 });
- 
+
  // New Arrow Function -- shows a way to fix the this key word in an object
  // e.g 1
  var box5 = {
@@ -62,22 +62,22 @@ return ` Age element ${index + 1} : ${age}` // he didnt use ;
 	clickMe: function(){
 		document.querySelector('.green').
 		addEventListener('click', ()=> { // arrow function preserve the value of the this key word
-		var str = 'This is box number ' + this.position + ' and it is  ' + this.color;	
-		alert(str);		
+		var str = 'This is box number ' + this.position + ' and it is  ' + this.color;
+		alert(str);
 		});
 	}
 }
 
 box5.clickMe();
-//e.g. 2 -- gives an error because the this key word is targeting the window 
+//e.g. 2 -- gives an error because the this key word is targeting the window
 var box5 = {
 	color: 'green',
 	position: 1;
 	clickMe: () =>{
 		document.querySelector('.green').
-		addEventListener('click', ()=> { 
-		var str = 'This is box number ' + this.position + ' and it is  ' + this.color;	
-		alert(str);		
+		addEventListener('click', ()=> {
+		var str = 'This is box number ' + this.position + ' and it is  ' + this.color;
+		alert(str);
 		});
 	}
 }
@@ -129,7 +129,7 @@ for (const cur of boxesArr6){
 		continue;
 	}
 	cur.textContent = 'I changed to blue!';
-} 
+}
 // example 2 alternative
 for (const cur of boxesArr6){
 	if(cur.className.include('blue')){// include looks for the class
@@ -142,7 +142,7 @@ for (const cur of boxesArr6){
 var ages = [12, 7, 8, 21, 14, 31];
 console.log(ages.findIndex(elem => elem >= 18)); // gives index
 console.log(ages.find(elem => elem >= 18 ));   // gives the element
- 
+
 
 
 //SPREAD OPERATOR
@@ -171,14 +171,14 @@ Array.from(all).forEach(cur => cur.style.color = 'purple'); // change text of no
 //REST PARAMETERS
 // example 1
 function isFullAge6( ...years){
-	
+
 	//console.log(years); // this is aleady an array
 		years.forEach(cur =>
-						console.log( 
+						console.log(
 							(2016 - cur) >= 18
 						)
 					);
-					
+
 }
 
 isFullAge6(1990, 1999, 1965, 2016, 1987);
@@ -187,7 +187,7 @@ isFullAge6(1990, 1999, 1965, 2016, 1987);
 function isFullAge6(limit , ...years){ // if you want to put a limit in
 		//console.log(years); // this is aleady an array
 		years.forEach(cur =>
-						console.log( 
+						console.log(
 							(2016 - cur) >= limit
 						)
 					);
@@ -228,35 +228,35 @@ if(question.has(4)){
 	question.delete(4);
 	console.log('Answer 4 is here');
 	}
-	
+
 	//question.clear()-- clears all maps in the maps object question
-	
+
 	 // LOOP THROUGH MAP
 	question.forEach((value, key) =>   console.log(`This is ${key}, and it's set to ${value}`)  );
-	
+
 	// LOOP THROUGH MAP
 	//for (let key of question) // this would access the key only
-		for (let [key, value] of question.entries()){ 
+		for (let [key, value] of question.entries()){
 		// The entries property was use here to include both key and value, because it both we have a destructoring
 			console.log(`This is ${key}, and it's set to ${value}`);
 		}
-	
+
 	}
-	
+
 	for (let [key, value] of question.entries()){ // .entries() is new for maps
 		if(typeof(key) === 'number'){   // prints out all the number values of the map
 			console.log(`Answer ${key}:${value}`);
 		}
 	}
-	
+
 	const ans = parseInt(prompt('Write the correct Answer')); // open a prompt
 	console.log(question.get(ans === question.get('correct'))); // look to see if number the user enter is correct number
-	// reasons to use a map 
+	// reasons to use a map
 	//1. use anthing as he key
-	//2.  iterable 
+	//2.  iterable
 	//3. use the size property
 	//4. easy add and remove data from a map
-	
+
 // CLASSES
 //example 1
 class Person6{
@@ -269,7 +269,9 @@ class Person6{
 		var age = new Date().getFullYear - this.yearOfBirth;
 		console.log(age);
 	}
-	static greeting() {// instantes are not inherited with static methods
+	// instantes are not inherited with static methods
+	// to call Person6.greeting()
+	static greeting() {
 		console.log('Hey there!');
 	}
 }
@@ -292,23 +294,21 @@ class Person6{
 }
 
 class Athlete6 extends Person6{
-	
+
 	constructor( name, yearOfBirth, job, olympicGames, medals){
-	super(name, yearOfBirth, job);// call the super class 
-	
+	super(name, yearOfBirth, job);// call the super class
+
 	this.olympicGames = olympicGames;
 	this.medals = medals;
 	}
-	
+
 	wonMedal(){
 		this.medals++;
 		console.log(this.medals);
 	}
 }
 
-	
+
 var johnAthlete5 = new Athlete5( 'John', 1990, 'swimmer', 3, 10);
 johnAthlete5.calculateAge();
 johnAthlete5.wonMedal();
-
-
