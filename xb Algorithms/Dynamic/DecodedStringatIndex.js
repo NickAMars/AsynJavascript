@@ -6,7 +6,8 @@
 // Now for some encoded string S, and an index K, find and return the K-th letter (1 indexed) in the decoded string.
 //
 //
-
+// cant pass this test
+//222280369
 
 var decodeAtIndex = function(S, K) {
   //find a way to store the character in a string
@@ -31,4 +32,26 @@ var decodeAtIndex = function(S, K) {
 };
 
 // console.log(decodeAtIndex("leet2code3",10));
- console.log(decodeAtIndex("a234567999999",1));
+ console.log(decodeAtIndex("a234567",1));
+
+
+// correct solution best to store
+ var decodeAtIndex = module.exports  = function(S, K) {
+             let n = S.length;
+ 	        let dp = Array(n+1).fill(0);
+ 	        for(let i = 0;i < n;i++){
+ 	        	if(S[i] >= '2' && S[i] <= '9'){
+ 	        		dp[i+1] = dp[i] * (S[i]-'0');
+ 	        	}else{
+ 	        		dp[i+1] = dp[i] + 1;
+ 	        	}
+ 	        }
+ 	        K--;
+ 	        for(let i = n-1;i >= 0;i--){
+ 	        	K %= dp[i+1];
+ 	        	if(K+1 == dp[i+1] && !(S[i] >= '2' && S[i] <= '9')){
+ 	        		return "" + S[i];
+ 	        	}
+ 	        }
+ 	        return null;
+ };
