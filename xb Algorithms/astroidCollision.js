@@ -13,6 +13,8 @@ Find out the state of the asteroids after all collisions.
 
 // assuming you cant have an asteroid size of zero
 var asteroidCollision = function(asteroids) {
+
+  if(asteroids.length === 1 )return asteroids;
 //create new array
 let newArray = [];
 // check if something is negative
@@ -26,7 +28,10 @@ while(i >= 0){ // O(n)
   }else break;
   i--;
 } // leave array
-// i is at the negate value
+
+if(i === -1){
+  return newArray;
+}
 let j = i -1, negative = asteroids[i];
 let store = [];
 let flag = true;
@@ -34,15 +39,27 @@ store.push(asteroids.pop()); // store negative value in new array
 // search for the next positive value that is greater than this one
 // or the next val beside it that is greater than this one
 while(j >= 0){
-  if(Math.abs(asteroids[j]) > Math.abs(negative)){
+  // console.log(negative);
+  // console.log(store);
+  if(Math.abs(asteroids[j]) >= Math.abs(negative)){
+    // console.log("great",asteroids[j])
     // if element is positive then remove all element after it
     if(Math.sign(asteroids[j]) === 1){
       // if the element is greater than all the element in the stack from top to bottom
       for(let i = store.length -1 ; i >= 0 ; i--){ // O(n^2)
-          if(store[i] < asteroids[j]){
+        if(Math.abs(store[i]) === Math.abs(asteroids[j])){
+          // remove the both of them
+          asteroids.pop();
+          store.pop();
+          flag = false;
+          break;
+        } else if(Math.abs(store[i]) < Math.abs(asteroids[j])){
             store.pop(); // O(1)
             flag = true;
-          }else flag = false; // value was not greater than all element
+          }else{
+            flag = false;
+            break;
+          }  // value was not greater than all element
       }
       // if element has remove all the values from the store
       // we add it to the main array
@@ -52,13 +69,13 @@ while(j >= 0){
       }
 
     }else{
-      console.log("greater -",asteroids);
        // switch the negative with the greatest value
       negative = asteroids[j];
       // take it out of the array
       store.push(asteroids.pop());
     }
   }else{
+    // console.log("less",asteroids[j])
     // if my negative is greater than the next value
     // and it is positive
     if(Math.sign(asteroids[j]) === 1){
@@ -100,4 +117,4 @@ function swap(arr){
   }
 }
 
-console.log(asteroidCollision([-2, -1,1,2]));
+console.log(asteroidCollision([40,-39,-199]));
