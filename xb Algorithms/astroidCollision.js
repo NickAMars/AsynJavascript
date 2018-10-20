@@ -26,7 +26,6 @@ while(i >= 0){ // O(n)
   }else break;
   i--;
 } // leave array
-
 // i is at the negate value
 let j = i -1, negative = asteroids[i];
 let store = [];
@@ -39,7 +38,7 @@ while(j >= 0){
     // if element is positive then remove all element after it
     if(Math.sign(asteroids[j]) === 1){
       // if the element is greater than all the element in the stack from top to bottom
-      for(let i = store.length -1 ; i > 0 ; i++){ // O(n^2)
+      for(let i = store.length -1 ; i >= 0 ; i--){ // O(n^2)
           if(store[i] < asteroids[j]){
             store.pop(); // O(1)
             flag = true;
@@ -53,6 +52,7 @@ while(j >= 0){
       }
 
     }else{
+      console.log("greater -",asteroids);
        // switch the negative with the greatest value
       negative = asteroids[j];
       // take it out of the array
@@ -63,7 +63,11 @@ while(j >= 0){
     // and it is positive
     if(Math.sign(asteroids[j]) === 1){
       // remove element from array
+      if(store.length === 0 ){
+        newArray.push(asteroids.pop());
+      }else{
         asteroids.pop();
+      }
     }else{ // its negative
       // switch the negative with the greatest value
       negative = asteroids[j];
@@ -74,11 +78,26 @@ while(j >= 0){
   // if(Math.sign(asteroids[i]) === 1)
   j--;
 }
+swap(newArray);
+swap(store);
 
    newArray = store.concat(newArray);
 
 return newArray
 };
+function swap(arr){
+  i = 0;
+  j = arr.length -1;
+  let mid = Math.floor(j/2);
+  // console.log(mid);
+  let temp;
+  while(i <= mid){
+    temp = arr[j]
+    arr[j] =  arr[i];
+    arr[i] = temp;
+    j--;
+    i++;
+  }
+}
 
-
-console.log(asteroidCollision([5, 10, -5, 5, 20, 14]));
+console.log(asteroidCollision([-2, -1,1,2]));
