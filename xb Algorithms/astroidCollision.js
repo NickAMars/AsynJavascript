@@ -30,6 +30,7 @@ while(i >= 0){ // O(n)
 } // leave array
 
 if(i === -1){
+  swap(newArray);
   return newArray;
 }
 let j = i -1, negative = asteroids[i];
@@ -42,40 +43,51 @@ while(j >= 0){
   // console.log(negative);
   // console.log(store);
   if(Math.abs(asteroids[j]) >= Math.abs(negative)){
-    // console.log("great",asteroids[j])
+    // console.log("greate val", asteroids[j]);
     // if element is positive then remove all element after it
     if(Math.sign(asteroids[j]) === 1){
-      // if the element is greater than all the element in the stack from top to bottom
-      for(let i = store.length -1 ; i >= 0 ; i--){ // O(n^2)
-        if(Math.abs(store[i]) === Math.abs(asteroids[j])){
-          // remove the both of them
-          asteroids.pop();
-          store.pop();
-          flag = false;
-          break;
-        } else if(Math.abs(store[i]) < Math.abs(asteroids[j])){
-            store.pop(); // O(1)
-            flag = true;
-          }else{
-            flag = false;
-            break;
-          }  // value was not greater than all element
-      }
-      // if element has remove all the values from the store
-      // we add it to the main array
-      //if not we ignore it
-      if(flag){
+
+      if(store.length === 0) {
         newArray.push(asteroids.pop());
+      }else{
+        // if the element is greater than all the element in the stack from top to bottom
+        for(let i = store.length -1 ; i >= 0 ; i--){ // O(n^2)
+          if(Math.abs(store[i]) === Math.abs(asteroids[j])){
+            // remove the both of them
+            asteroids.pop();
+            store.pop();
+            flag = false;
+            // console.log(store)
+            negative = store[store.length -1];
+            // console.log("negative", negative)
+            break;
+          } else if(Math.abs(store[i]) < Math.abs(asteroids[j])){
+              store.pop(); // O(1)
+              flag = true;
+            }else{
+              flag = false;
+              asteroids.pop();
+              break;
+            }  // value was not greater than all element
+        }
+        // if element has remove all the values from the store
+        // we add it to the main array
+        //if not we ignore it
+        if(flag){
+          newArray.push(asteroids.pop());
+        }
       }
 
     }else{
+      // console.log(asteroids[j]);
        // switch the negative with the greatest value
       negative = asteroids[j];
       // take it out of the array
       store.push(asteroids.pop());
+      // console.log(store);
     }
   }else{
-    // console.log("less",asteroids[j])
+    // console.log("less val", asteroids[j]);
     // if my negative is greater than the next value
     // and it is positive
     if(Math.sign(asteroids[j]) === 1){
@@ -117,4 +129,4 @@ function swap(arr){
   }
 }
 
-console.log(asteroidCollision([40,-39,-199]));
+console.log(asteroidCollision([-4,-1,10,2,-1,8,-9,-6,5,2]));
