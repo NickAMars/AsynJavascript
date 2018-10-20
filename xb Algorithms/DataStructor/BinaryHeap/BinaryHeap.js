@@ -1,7 +1,7 @@
 
 class MaxBinaryHeap{
   constructor(){
-    this.values = [41,39,33,18,27,12];
+    this.values = [41,39,33,18,25,12];
   }
   insert(element){
     this.values.push(element);
@@ -66,6 +66,10 @@ class MaxBinaryHeap{
     // time complexity is  O(logn)
     // while first child does not equal to zero
     while(this.values[2 * index + 1]){
+      /*
+        realizing that i only compare the children index
+        forgot to compare parent with the children
+      */
       first_child =  this.values[2 * index + 1];
       second_child =  this.values[2 * index + 2];
       // check if it exist
@@ -73,17 +77,21 @@ class MaxBinaryHeap{
         // What if one of them is null?
         if(first_child > second_child){
           //SWAP the element with the first child
+          if(first_child < element) break; // no need to swap
           this.values[2 * index + 1] = element;
           this.values[index] = first_child;
           index = 2 * index + 1;
         }else{
           //SWAP the element with the second child
+          if(second_child < element) break; // no need to swapbreak;
+
           this.values[2 * index + 2] = element;
           this.values[index] = second_child;
           index = 2 * index + 2;
         }
       }else if(first_child){
         //SWAP the element with the first child
+        if(first_child < element) break; // no need to swap
         this.values[2 * index + 1] = element;
         this.values[index] = first_child;
         index = 2 * index + 1;
@@ -95,8 +103,9 @@ class MaxBinaryHeap{
 }
 let heap = new MaxBinaryHeap();
 heap.insert(55);
-heap.insert(25);
+heap.insert(28);
 heap.insert(30);
+heap.insert(27);
 heap.insert(100);
 heap.bubbleDown();
 
