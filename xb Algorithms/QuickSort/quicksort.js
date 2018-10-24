@@ -15,7 +15,6 @@ function qSort(arr){
     // less than pivot value
     if(arr[i] < pivot ){
       left.push(arr[i]);
-    // i dont want a repeating value
     }else if( arr[i] > pivot ){
       right.push(arr[i]);
     }
