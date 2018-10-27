@@ -41,10 +41,28 @@ class HashTable {
     return undefined;
   }
   keys(){
-
+    let store = [];
+    for(let main of this.keyMap){
+      if(main){
+        for(let [key,value] of main)
+        if(!store.includes(key)){
+          store.push(key);
+        }
+      }
+    }
+    return store;
   }
   values(){
-    
+    let store = [];
+    for(let main of this.keyMap){
+      if(main){
+        for(let [key,value] of main)
+        if(!store.includes(value)){
+          store.push(value);
+        }
+      }
+    }
+    return store;
   }
 }
 let hashtag = new HashTable();
@@ -56,10 +74,13 @@ hashtag.set("google", " i will work for you");
 hashtag.set("grandpa", "I will make you happy");
 hashtag.set("change", "is coming");
 
+
+// console.log(hashtag.keys());
+ console.log(hashtag.values());
 // console.log(hashtag.keyMap);
 
 
-console.log(hashtag.get("google"));
+// console.log(hashtag.get("google"));
 
 
 
