@@ -1,5 +1,5 @@
 GRAPHS
-Use Social Network, Traveling sales man.
+Use Social Network, Traveling sales man, Recommendations Network
 
 Essential Graph Terms
 
