@@ -53,6 +53,7 @@ class Graph {
     })(start);
     return result;
   }
+  //took advantage of the way it was ordered
     DFSIterative(start){
       const stack = [start];
       const result = [];
