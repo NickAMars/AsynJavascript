@@ -1,4 +1,9 @@
 //Binary Heap
+BIG O of Binary Heaps 
+Insertion - O(log N)
+Removal - O(log N)
+Search - O(N)
+
 
 MaxBinaryHeap, parent nodes are always larger than child nodes.
 MinNinaryHeap , parent nodes are always smaller than child nodes.
