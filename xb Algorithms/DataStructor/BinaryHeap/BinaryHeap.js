@@ -9,11 +9,11 @@ class MaxBinaryHeap{
   }
   // take the leaf node and compare it to its parent
   /*
-  for the bubbling method all we need is the last inserted element
-  and the index.
-  so that we can find the parent index and and compare the values
-  between them and decide
-  if we should continue with the swap of leave the loop.
+    for the bubbling method all we need is the last inserted element
+    and the index.
+    so that we can find the parent index and and compare the values
+    between them and decide
+    if we should continue with the swap of leave the loop.
   */
   bubbleUp(){
     // get last element in array
@@ -40,25 +40,28 @@ class MaxBinaryHeap{
     console.log(this.values);
   }
 
-
-// assume we are storing from left to right
-  bubbleDown(){
+// takes off the first element
+  remove(){
     //element and and place the item at the bottom of the array to the top.
+    this.values[0] = this.values.pop();
     // then compare the element to the two children looping for the largest one
-    // children nodes are 2n + 1 , 2n + 2
-    // then swap the largest one with its value
-
-
-    //Start do one case of this
-    // remove the first element shift()
-    //remove the last and place on the root node pop()
-
+    this.bubbleDown();
+  }
+  /*
+     compare the element to the two children looping for the largest one
+     children nodes are 2n + 1 , 2n + 2
+     then swap the largest one with its value
+     Start do one case of this
+     remove the first element shift()
+     remove the last and place on the root node pop()
+  */
+  bubbleDown(){
     //THIS CODE SWITCH THE VALUES OF THE FIRST AND LAST INDEX
     // starting index
     let index = 0;
     // access O(1)     pop method O(1)
-    let element  = this.values.pop();
-    this.values[index] = element;
+    // this.values[index] = element;
+    let element = this.values[index];
     let first_child = 0,second_child = 0;
     // compare children nodes are 2n + 1 , 2n + 2
 
@@ -99,15 +102,12 @@ class MaxBinaryHeap{
     }  // if there is no left or right just stop there
     console.log(this.values);
   }
-
 }
 let heap = new MaxBinaryHeap();
-heap.insert(55);
-heap.insert(28);
-heap.insert(30);
-heap.insert(27);
+heap.insert(5);
+heap.insert(2);
 heap.insert(100);
-heap.bubbleDown();
+heap.remove();
 
 
 // child index is 2n + 1 or 2n + 2
