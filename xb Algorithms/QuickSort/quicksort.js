@@ -1,35 +1,40 @@
 
+function quickSort(arr, left, right){
+   let partitionIndex;
+  if(left < right){
+    partitionIndex = partition(arr, left, right);
 
-function qSort(arr){
-  // Base case
-  if(arr.length === 0) return [];
-  // pointers in the array space O(n^3)
-  // collectors
-  let left= [];
-  let right= [];
-  //compare first value of array
-  let pivot = arr[0];
-
-// goes through all the arr except the first on
-  for(let i = 1; i < arr.length; i++){
-    // less than pivot value
-    if(arr[i] < pivot ){
-      left.push(arr[i]);
-    }else if( arr[i] > pivot ){
-      right.push(arr[i]);
-    }
+   //sort left and right
+   quickSort(arr, left, partitionIndex - 1);
+   quickSort(arr, partitionIndex + 1, right);
   }
-// console.log("left", left);
-// console.log("right", right);
-  return qSort(left).concat(pivot, qSort(right));
+  return arr;
 }
 
 
-console.log(qSort([44,64,12,43,55,23,33,75,77]));
+function partition(arr, left, right){
+  // last element is my pivot,
+   let pivotValue = arr[right], partitionIndex = left;
+
+   for(let i = left; i < right; i++){
+    if(arr[i] < pivotValue){
+      swap(arr, i, partitionIndex);
+      partitionIndex++;
+    }
+  }
+  swap(arr, right, partitionIndex);
+  return partitionIndex;
+}
+
+function swap(A ,i, j){
+  let temp = A[i];
+  A[i] = A[j];
+  A[j] = temp;
+}
+
+let arr = [1,2,3,4];
+quickSort(arr, 0, 3);
 
 /*
-first itteration
-left = [12,43,23,33]
-right = [44 ,64,55,75,77]
-
+Now the space complexity is O(logn)
 */
