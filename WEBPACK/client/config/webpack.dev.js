@@ -1,8 +1,9 @@
 const path = require("path");
 const webpack = require("webpack");
+const HTMLWebpackPlugin = require("html-webpack-plugin");
 module.exports = {
   entry: {
-    main: "./src/main.js"
+    main: "./client/src/main.js"
   },
   mode: "development",
   output:{
@@ -10,10 +11,11 @@ module.exports = {
     path: path.resolve(__dirname, "../dist"),
     publicPath: "/"
   },
-  devServer: {//options for dev server
+  devServer: {
     contentBase: "dist",
     overlay: true
   },
+  devtool: "sourve-map",
   module:{
     rules:[
       {
@@ -28,14 +30,9 @@ module.exports = {
           {loader: "css-loader" }
         ]
       },
-      {// for html
+      {
         test: /\.html$/,
         use:[
-          {
-            loader: "file-loader",
-            options: { name: "[name].html"}
-          },
-          { loader: "extract-loader" },
           {
             loader: "html-loader",
             options:{
@@ -44,7 +41,7 @@ module.exports = {
           }
         ]
       },
-      {// for image files
+      {
         test: /\.(jpg|gif|png)$/,
         use:[{
           loader: "file-loader",
@@ -55,16 +52,6 @@ module.exports = {
       }
     ]
   },
-  plugins:[new webpack.HotModuleReplacementPlugin()]
+  plugins:[new webpack.HotModuleReplacementPlugin(),
+  new HTMLWebpackPlugin({template: "./client/src/index.html"})]
 }
-
-// { // what ever the name of the html loader put that here
-//   loader: "file-loader",
-//   options:{ name: "[name].html" }// takes html firle name
-// },
-// { // tells webpack that you want this to be a seperate file
-//   loader: "extract-loader"
-// },
-// {// does the linting
-//   loader: "html-loader"
-// }
