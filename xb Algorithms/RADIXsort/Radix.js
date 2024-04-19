@@ -30,6 +30,7 @@ function radixSort(nums){
         }
         // combine all the arrays together
         nums = [].concat(...digitBuckets);
+        console.log(nums)
     }
     return nums;
 }
